@@ -5,7 +5,7 @@ It is a SpringBoot project.
 ## Installation
 ```bash
 mvn install <br/>
-mvn Package
+mvn package
 ```
 ## How to launch the jar file
 ```bash

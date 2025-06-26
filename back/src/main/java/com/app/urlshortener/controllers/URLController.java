@@ -2,6 +2,7 @@ package com.app.urlshortener.controllers;
 
 import com.app.urlshortener.models.URL;
 import com.app.urlshortener.services.URLService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
@@ -19,10 +20,10 @@ public class URLController {
     }
 
     @GetMapping("/expand/{shortUrl}")
-    public URL expandUrl(@PathVariable String shortUrl) {
-        URL u = service.expandUrl(shortUrl);
-        u.setHits(u.getHits() + 1);
-        return service.shortenUrl(u.getLongUrl(), u.getExpiresAt());
+    public URL expandUrl(@PathVariable String shortUrl, HttpServletRequest request) {
+        return service.expandUrl(shortUrl, request);
     }
+
+
 }
 

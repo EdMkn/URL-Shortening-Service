@@ -1,12 +1,11 @@
 package com.app.urlshortener.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +17,9 @@ public class URL {
     private String shortUrl;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
-    private int hits;
+
+    @OneToMany(mappedBy = "url", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Click> hits;
     // getters et setters...
 }

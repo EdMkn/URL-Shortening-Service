@@ -8,9 +8,9 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.URLShortener</groupId>
+	<groupId>com.app</groupId>
 	<artifactId>URLShortener</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>URLShortener</name>
 	<description>URL SHortener</description>
 	<url/>

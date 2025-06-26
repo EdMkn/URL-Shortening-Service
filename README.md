@@ -2,8 +2,9 @@
 A simple RESTful API that allows users to shorten long URLs. The API provides endpoints to create, retrieve, update, and delete short URLs. It also provides statistics on the number of times a short URL has been accessed
 
 It is a SpringBoot project. 
-## Installation
+## Lauching the back-end
 Modify the application.properties file
+Go to the "back" folder
 ```bash
 mvn install <br/>
 mvn package
@@ -11,4 +12,10 @@ mvn package
 ## How to launch the jar file
 ```bash
 java -jar <package_name.jar>
+```
+
+## Launching the front-end
+Go to the "front" folder
+```bash
+npm start
 ```

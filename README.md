@@ -3,9 +3,10 @@ A simple RESTful API that allows users to shorten long URLs. The API provides en
 
 It is a SpringBoot project. 
 ## Installation
+Modify the application.properties file
 ```bash
 mvn install <br/>
-mvn Package
+mvn package
 ```
 ## How to launch the jar file
 ```bash

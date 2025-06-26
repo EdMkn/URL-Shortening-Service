@@ -1,5 +1,6 @@
 package com.app.urlshortener.services;
 
+import com.app.urlshortener.dto.URLStatsDTO;
 import com.app.urlshortener.models.Click;
 import com.app.urlshortener.models.URL;
 import com.app.urlshortener.repositories.ClickRepository;
@@ -7,8 +8,11 @@ import com.app.urlshortener.repositories.URLRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
@@ -55,5 +59,25 @@ public class URLService {
         repo.save(url);
         return url;
     }
-}
 
+    public URLStatsDTO getUrlStats(String shortUrl) {
+        URL url = repo.findByShortUrl(shortUrl)
+                .orElseThrow(() -> new RuntimeException("URL not found"));
+
+        int totalClicks = url.getHits() != null ? url.getHits().size() : 0;
+
+        return new URLStatsDTO(
+                url.getShortUrl(),
+                url.getLongUrl(),
+                totalClicks,
+                url.getCreatedAt(),
+                url.getExpiresAt()
+        );
+    }
+
+    public List<URLStatsDTO> getAllURLS() {
+        return repo.findAll().stream().map(url ->
+                getUrlStats(url.getShortUrl())
+        ).collect(Collectors.toList()).reversed();
+    }
+    }
